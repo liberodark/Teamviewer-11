@@ -2,14 +2,15 @@
 
 pkgname=teamviewer11
 pkgver=11.0.67687
-pkgrel=7
+pkgrel=8
 pkgdesc='All-In-One Software for Remote Support and Online Meetings'
 arch=('x86_64')
 url='http://www.teamviewer.com'
 license=('custom')
 options=('!strip')
 provides=('teamviewer')
-conflicts=('teamviewer-beta')
+conflicts=('teamviewer' 'teamviewer-beta' 'teamviewer10' 'teamviewer9' 'teamviewer8')
+
 depends_x86_64=(
 	'lib32-fontconfig'
 	'lib32-libpng12'
@@ -20,15 +21,6 @@ depends_x86_64=(
   'lib32-libxtst'
   'lib32-freetype2'
   'lib32-dbus'
-  'libxtst')
-depends_i686=(
-	'fontconfig'
-	'libpng12'
-	'libsm'
-	'libxinerama'
-	'libxrender'
-	'libjpeg6-turbo'
-  'freetype2'
   'libxtst')
 install=teamviewer.install
 source_x86_64=("https://download.teamviewer.com/download/version_${pkgver%%.*}x/teamviewer_${pkgver}_amd64.deb"
@@ -56,7 +48,8 @@ package() {
 	rm "${pkgdir}"/opt/teamviewer/tv_bin/xdg-utils/xdg-email
 	install -D -m0644 "${pkgdir}"/opt/teamviewer/tv_bin/script/teamviewerd.service \
 		"${pkgdir}"/usr/lib/systemd/system/teamviewerd.service
-	install -d -m0755 "${pkgdir}"/usr/{share/applications,share/licenses/teamviewer}
+	install -d -m0755 "${pkgdir}"/usr/{share/applications,share/licenses/teamviewer11}
+	mv "${srcdir}"/data/opt/teamviewer/tv_bin/desktop/teamviewer-teamviewer11.desktop "${pkgdir}"/usr/share/applications/teamviewer11.desktop
 	ln -s /opt/teamviewer/License.txt \
-		"${pkgdir}"/usr/share/licenses/teamviewer/LICENSE
+		"${pkgdir}"/usr/share/licenses/teamviewer11/LICENSE
 }
