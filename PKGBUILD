@@ -22,7 +22,7 @@ depends_x86_64=(
   'lib32-freetype2'
   'lib32-dbus'
   'libxtst')
-install=teamviewer.install
+install=teamviewer11.install
 source_x86_64=("https://download.teamviewer.com/download/version_${pkgver%%.*}x/teamviewer_${pkgver}_amd64.deb"
                 "https://archive.archlinux.org/packages/l/lib32-freetype2/lib32-freetype2-2.8-2-x86_64.pkg.tar.xz")
 sha256sums_x86_64=('164c568b01b0181d129ae9c55455e46921d3979fcf3f6b406abab3d3a2470b3d'
